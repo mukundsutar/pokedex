@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/pokedex/static/css/main.f0cc81c4.css",
+    "main.js": "/pokedex/static/js/main.b4030a56.js",
+    "static/media/pokemon-bg.jpg": "/pokedex/static/media/pokemon-bg.c90f295d75392c2e7752.jpg",
+    "static/media/pokedex-frame-3.png": "/pokedex/static/media/pokedex-frame-3.bbabaf99114948c3321b.png",
+    "static/media/volter__28goldfish_29.ttf": "/pokedex/static/media/volter__28goldfish_29.02f207da4d476a8e48eb.ttf",
+    "index.html": "/pokedex/index.html",
+    "main.f0cc81c4.css.map": "/pokedex/static/css/main.f0cc81c4.css.map",
+    "main.b4030a56.js.map": "/pokedex/static/js/main.b4030a56.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f0cc81c4.css",
+    "static/js/main.b4030a56.js"
+  ]
+}
