@@ -1,45 +1,72 @@
 import React, { useEffect, useState } from "react";
+import { useIDStore } from "../store/storage";
 
-export default function Profile({pokemonID}) {
-	const [apiData, setAPIData] = useState(1);
+export default function Profile() {
+	const [apiData, setAPIData] = useState("");
+	const [species, setSpeciesData] = useState("");
 
-	
+	const currID = useIDStore((state) => state.currID);
+
 	useEffect(() => {
 		async function fetchAPI() {
-
-			const url = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonID}/`);
+			const url = await fetch(
+				"https://pokeapi.co/api/v2/pokemon/" + currID + "/"
+			);
 			const data = await url.json();
 
 			setAPIData(data);
 		}
 
+		async function fetchAPIMore() {
+			const url = await fetch(
+				"https://pokeapi.co/api/v2/pokemon-species/" + currID + "/"
+			);
+			const data = await url.json();
+
+			setSpeciesData(data);
+		}
+
 		fetchAPI();
-	});
+		fetchAPIMore();
+		console.log(currID);
+	}, [currID]);
+
+	console.log(apiData.types);
 
 	return (
 		<>
-			{apiData && (
+			{apiData && species && (
 				<div id="pokemon-info">
 					<div className="overview">
 						<div id="stats">
 							<div id="statName">{apiData.name}</div>
+
 							<br />
-							<div id="height">HT {apiData.height * 10}cm</div>
+
+							<div id="height">HT {apiData.height / 10}m</div>
 							<div id="weight">WT {apiData.weight / 10}kg</div>
 						</div>
+
 						<img
 							id="pokemon-img"
-							src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"
+							src={apiData.sprites.front_default}
 							alt=""
 						/>
 					</div>
+
 					<div id="pokemon-types">
-						<span className="type-box grass">GRASS</span>
-						<span className="type-box poison">POISON</span>
+						{apiData.types.map((item, index) => (
+							<span
+								className={"type-box " + item.type.name}
+								key={index}
+							>
+								{item.type.name}
+							</span>
+						))}
 					</div>
+
 					<div id="pokemon-description">
-						There is a plant seed on its back right from the day
-						this POKéMON is born. The seed slowly grows larger.
+						{species["flavor_text_entries"][9]["flavor_text"]}
 					</div>
 				</div>
 			)}

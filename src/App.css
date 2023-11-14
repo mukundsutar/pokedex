@@ -132,6 +132,7 @@ body {
     margin: 5px;
     border: 1px solid white;
     border-radius: 8px;
+    text-transform: uppercase;
 }
 
 #pokemon-description {
@@ -167,6 +168,6 @@ body {
     background-color: beige;
 }
 
-#statName{
+#statName {
     text-transform: uppercase;
 }
